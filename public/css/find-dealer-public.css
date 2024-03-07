@@ -1,0 +1,412 @@
+/* MAP CSS  */
+#map_canvas {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+.options-box {
+  background: #fff;
+  border: 1px solid #999;
+  border-radius: 3px;
+  height: 100%;
+  line-height: 35px;
+  padding: 10px 10px 30px 10px;
+  text-align: left;
+  width: 340px;
+}
+
+#pano {
+  width: 200px;
+  height: 200px;
+}
+
+.text {
+  font-size: 12px;
+}
+
+#toggle-drawing {
+  width: 27%;
+  position: relative;
+  margin-left: 10px;
+}
+
+#zoom-to-area-text {
+  position: relative;
+  width: 70%;
+}
+
+#zoom-to-area {
+  width: 24%;
+}
+
+/* FIND DEALERS PAGE  */
+.clark-results-not-found {
+  text-align: center;
+  padding: 1.5rem;
+}
+
+.clark-results-not-found h3 {
+  color: #434549;
+}
+
+.clark-results-not-found img {
+  /* width: 100px; */
+  height: 80px;
+  /* padding: 0 0 20px; */
+  margin-bottom: 10px;
+}
+
+.clark-error-msg {
+  display: none;
+  color: #d93b3b;
+}
+
+.clark-find-dealer-search::-webkit-scrollbar {
+  width: 3px;
+}
+
+.clark-find-dealer-search::-webkit-scrollbar-track {
+  background: #bbb;
+  border-radius: 3px;
+  background: transparent;
+}
+
+.clark-find-dealer-search::-webkit-scrollbar-thumb {
+  background: #bbb;
+  border-radius: 3px;
+}
+
+.clark-find-dealer-search p.map_description {
+  /* font-style: normal; */
+  /* font-weight: 400; */
+  /* font-size: .9375rem; */
+  /* line-height: 1.25rem; */
+  padding: 20px 5px;
+}
+
+.clark-find-dealer-search form {
+  padding: 0 1.5rem;
+}
+
+.clark-find-dealer-search h2 {
+  padding: 0 1.5rem;
+}
+
+.clark-map-location-details {
+  margin-top: 15px;
+}
+
+.clark-store-list-container {
+  padding: 1.5rem 1.5rem 0;
+  border-left: 0.5rem solid transparent;
+}
+
+.clark-store-list-container:hover {
+  background: #f7f7f8;
+  border-left: 0.5rem solid #f7941d;
+}
+
+.clark-store-list-container hr {
+  margin: 1.5rem 0 0;
+}
+
+.clark-loc-addr-wrap {
+  padding: 0;
+  margin: 0;
+}
+
+.clark-loc-addr-wrap li {
+  list-style: none;
+  list-style: none;
+  display: flex;
+  align-content: flex-start;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 10px;
+}
+.clark-loc-addr-wrap li i {
+  float: left;
+  margin-top: 5px;
+}
+
+.clark-find-dealer {
+  display: flex;
+  margin-bottom: 60px;
+}
+
+.clark-find-dealer-search {
+  min-height: 100vh;
+  height: 100vh;
+  float: left;
+  padding: 2rem 0;
+  width: 22rem;
+  overflow-y: scroll;
+  max-width: 100%;
+  /* box-shadow: 0 0 1rem -0.6875rem #111212; */
+  border-bottom: 1px solid #bdbdbd;
+}
+
+.clark-dealer-map {
+  width: calc(100vw - 22rem);
+  height: calc(100vh - 4.0625rem);
+  min-height: 100vh;
+}
+
+.clark-dealer-map iframe {
+  height: 100vh;
+  width: 100%;
+}
+
+.clark-store-list-container h4 {
+  margin-bottom: 5px;
+  color: #f7941d;
+  font-size: 20px;
+}
+
+.clark-find-dealer-search-input .clark-form-dealer,
+.clark-find-dealer-search h1 {
+  padding: 0 1.5rem;
+}
+
+.clark-find-dealer-search-input .clark-search-label {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 0.75rem;
+  line-height: 1rem;
+  visibility: hidden;
+  padding-bottom: 0.375rem;
+}
+
+.clark-find-dealer-search-input .input-group {
+  background: #f7f7f8;
+  margin: 0 0 1.375rem;
+  position: relative;
+}
+
+.clark-find-dealer-search-input span.clark-dealer-search-icon {
+  position: absolute;
+  right: 10px !important;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.clark-find-dealer-search-input .input-group input {
+  background-color: #f7f7f8;
+  -webkit-text-fill-color: #111212;
+  opacity: 1;
+  color: #111212;
+  line-height: 1rem;
+  width: 100%;
+  border: 2px solid transparent;
+  padding: 10px 30px 10px 10px;
+}
+
+.clark-find-dealer-search-input .input-group input:focus {
+  border-bottom: 2px solid var(--awb-color4);
+}
+
+.clark-find-dealer-search-input .input-group input:focus::placeholder {
+  color: transparent;
+}
+
+.clark-find-dealer-search-input
+  .input-group
+  input:focus::-webkit-input-placeholder {
+  opacity: 0;
+}
+
+#clark-submit-button {
+  background: var(--awb-color5);
+  color: #fff;
+  border: 1px solid #fff;
+  border-radius: 8px;
+  width: 100%;
+  font-size: 1rem;
+  padding: 0.625rem 1.5rem;
+  cursor: pointer;
+  outline: none;
+}
+
+.clark-header-back-content:hover {
+  color: var(--awb-color4);
+  cursor: pointer;
+}
+
+.clark-dealer-info-header {
+  background: #f7f7f8;
+  border-left: 0.5rem solid var(--awb-color4);
+  display: inline-block;
+  padding: 1.5rem 1.5rem 1.5rem 1rem;
+  width: 100%;
+}
+
+.clark-header-back-content {
+  cursor: pointer;
+}
+
+.clark-dealer-info-header i {
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  color: var(--awb-color4);
+  font-size: 20px;
+  font-style: normal;
+  margin-right: 10px;
+  position: relative;
+  top: 2px;
+}
+
+.clark-dealer-info-header h4 {
+  padding: 1.59375rem 0 1.5rem;
+}
+
+.clark-dealer-info-header a {
+  padding: 10px;
+  border-radius: 0.5rem;
+}
+
+.clark-dealer-info-header a.clark-btn-learn {
+  background: #fff;
+  color: #434546;
+  border: 1px solid #434546;
+}
+
+.clark-dealer-info-header a.clark-btn-contact {
+  background: #111212;
+  color: #fff;
+  border: 1px solid #fff;
+  margin-left: 10px;
+}
+
+.clark-dealer-address-details {
+  padding: 1.5rem;
+}
+
+.clark-dealer-address-details .dealer-details {
+  display: flex;
+  gap: 10px;
+  margin: 15px 0;
+}
+
+.clark-dealer-address-details .clark-dealer-website a {
+  text-decoration: underline;
+  font-weight: 600;
+}
+
+.clark-dealer-address-details i {
+  position: relative;
+  top: 5px;
+}
+
+.clark-dealer-hours {
+  padding: 1.5rem;
+}
+
+.clark-dealer-hours p {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.clark-dealer-hours h5 {
+  color: var(--awb-color4);
+  padding-bottom: 1rem;
+}
+
+.clark-find-dealer .clark-dealer-map,
+.clark-find-dealer .clark-find-dealer-search {
+  height: calc(100vh - 125px);
+  min-height: auto;
+}
+
+.clark-loading-icon {
+  padding: 100px 20px;
+  display: none;
+}
+
+.clark-results-not-found {
+  display: none;
+}
+.clark-input-group-radio {
+  margin: 0 0 1.35rem;
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+.clark-radio-btn {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.clark-radio-btn input {
+  accent-color: #353535;
+}
+.clark-radio-btn label {
+  margin-bottom: 0;
+  font-weight: normal;
+}
+#clark-dropdown-milezone {
+  width: 100%;
+  padding: 0 10px;
+  background: transparent;
+  appearance: none;
+  height: 40px;
+  margin: 0 0 1.35rem;
+  background-image: url(../img/chevron-down-solid.svg);
+  background-repeat: no-repeat;
+  background-size: 16px;
+  background-position: 97%;
+}
+#clark-dropdown-milezone:focus {
+  border: 1px solid var(--form_border_color);
+}
+.clark-loader {
+  border: 6px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 6px solid var(--awb-color5);
+  width: 50px;
+  height: 50px;
+  -webkit-animation: spin 1.5s linear infinite;
+  /* Safari */
+  animation: spin 1.5s linear infinite;
+  margin: auto;
+}
+
+/* Safari */
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@media (max-width: 767px) {
+  .clark-find-dealer {
+    flex-wrap: wrap;
+  }
+  .clark-find-dealer .clark-dealer-map,
+  .clark-find-dealer .clark-find-dealer-search {
+    width: 100%;
+  }
+  .clark-find-dealer .clark-find-dealer-search {
+    height: auto;
+  }
+  .clark-dealer-map{
+    height: 400px !important;
+  }
+}
