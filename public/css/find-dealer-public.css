@@ -133,6 +133,7 @@
 .clark-find-dealer {
   display: flex;
   margin-bottom: 60px;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
 }
 
 .clark-find-dealer-search {
@@ -143,8 +144,8 @@
   width: 22rem;
   overflow-y: scroll;
   max-width: 100%;
-  /* box-shadow: 0 0 1rem -0.6875rem #111212; */
-  border-bottom: 1px solid #bdbdbd;
+  /* box-shadow: 0 0 1rem -0.6875rem #111212; 
+  border-bottom: 1px solid #bdbdbd;*/
 }
 
 .clark-dealer-map {
@@ -398,7 +399,9 @@
 @media (max-width: 767px) {
   .clark-find-dealer {
     flex-wrap: wrap;
-  }
+    flex-direction: column-reverse;
+    margin-bottom: 40px;
+}
   .clark-find-dealer .clark-dealer-map,
   .clark-find-dealer .clark-find-dealer-search {
     width: 100%;
@@ -409,4 +412,10 @@
   .clark-dealer-map{
     height: 400px !important;
   }
+}
+
+
+.highlighted {
+  background-color: #f0f0f0;
+  /* Add any other styles you want to apply when the card is highlighted */
 }

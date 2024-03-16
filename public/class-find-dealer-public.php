@@ -148,6 +148,7 @@ class Find_Dealer_Public
 							<option value="50">50 miles</option>
 							<option value="75">75 miles</option>
 							<option value="100">100 miles</option>
+							<option value="250">250 miles</option>
 						</select>
 						<div class="clark-error-msg" role="alert" aria-atomic="true">
 							Enter a Zip or Postal Code
@@ -281,7 +282,7 @@ class Find_Dealer_Public
 		}
 
 		// Perform SQL query
-		$results = $wpdb->get_results("SELECT dealer_name,dealer_address,url,email,phone_number,state,zipcode,city,latitude as lat,longitude as lng FROM {$wpdb->prefix}dealers WHERE `zipcode` = '$zipcode' ORDER BY `sales_force_id` ASC");
+		$results = $wpdb->get_results("SELECT dealer_name,dealer_address,url,email,phone_number,state,zipcode,city,latitude as lat,longitude as lng FROM {$wpdb->prefix}dealers /*WHERE `zipcode` = '$zipcode'*/ ORDER BY `sales_force_id` ASC");
 		array_push($res, $results);
 		array_push($res, $latitude);
 		array_push($res, $longitude);

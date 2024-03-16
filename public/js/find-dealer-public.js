@@ -1,5 +1,5 @@
 var map;
-// var bounds;
+var bounds;
 function findDealerInitMap() {
   map = new google.maps.Map(document.getElementById("find-dealer-map"), {
     center: { lat: 41.850033, lng: -87.6500523 }, // Set the initial center of the map
@@ -7,7 +7,7 @@ function findDealerInitMap() {
     mapTypeId: google.maps.MapTypeId.ROADMAP,
     // disableDefaultUI: true
   });
-  // bounds = new google.maps.LatLngBounds();
+  bounds = new google.maps.LatLngBounds();
 }
 
 jQuery(document).ready(function () {
@@ -25,6 +25,7 @@ jQuery(document).ready(function () {
   var email;
   var country_code = jQuery('input:radio[name="clark-country-select"]').val();
   var radius_distance = jQuery("#clark-dropdown-milezone :selected").val();
+  var count = 0;
 
   jQuery(document).on("change", "#clark-dropdown-milezone", function (e) {
     radius_distance = jQuery(this).val();
@@ -116,10 +117,11 @@ jQuery(document).ready(function () {
               if (url.length > 0) {
                 card += `<li><i class="fa fa-globe"></i> <a href="https://${url}" target="_blank">${url}</a></li>`;
               }
-              `</ul>
+              card += `</ul>
                             <hr>
                         </div>`;
               calculateRadius(
+                i,
                 card,
                 response[1],
                 response[2],
@@ -134,6 +136,19 @@ jQuery(document).ready(function () {
                 dealer_n,
                 url,
                 email
+              );
+            }
+            if (count == 0) {
+              console.log(count);
+              jQuery(".clark-results-not-found").css("display", "block");
+              map = new google.maps.Map(
+                document.getElementById("find-dealer-map"),
+                {
+                  center: { lat: 41.850033, lng: -87.6500523 }, // Set the initial center of the map
+                  zoom: 4, // Set the initial zoom level
+                  mapTypeId: google.maps.MapTypeId.ROADMAP,
+                  // disableDefaultUI: true
+                }
               );
             }
           }
@@ -158,6 +173,7 @@ jQuery(document).ready(function () {
   }
 
   function calculateRadius(
+    i,
     card,
     x,
     y,
@@ -174,6 +190,7 @@ jQuery(document).ready(function () {
     email
   ) {
     // var center = new google.maps.LatLng(latitude, longitude);
+
     var center = new google.maps.LatLng(x, y);
     var position = new google.maps.LatLng(latitude, longitude);
     var distance = google.maps.geometry.spherical.computeDistanceBetween(
@@ -195,10 +212,9 @@ jQuery(document).ready(function () {
 
     // Check if distance is within radius
     if (distance / 1000 <= radius) {
-      jQuery(".clark-results-not-found").css("display", "none");
-      jQuery(".clark-map-location-details").append(card);
       // Convert meters to kilometers
 
+      const iconImage = document.createElement("img");
       // Mark the given location
       var marker = new google.maps.Marker({
         position: position,
@@ -209,63 +225,97 @@ jQuery(document).ready(function () {
           url: "https://clarkmhcdev.mediawebdev.com/wp-content/uploads/2024/03/map-pin.png", // URL to your custom icon
           scaledSize: new google.maps.Size(40, 40), // Size of the icon
         },
+        content: iconImage,
       });
+
       marker.addListener("click", () => {
         jQuery(".clark-map-location-details").empty();
         jQuery(".clark-map-detalis-extend").empty();
         jQuery("#clarkToggleBlock_1").css("display", "block");
-        let extend_card = `<div id="clarkToggleBlock_1" class="clark-toggle-block" aria-hidden=""">
-        <div class="clark-dealer-info-header">
-          <span class="clark-header-back-content">
-            <i class="fa-solid fa-arrow-left"></i>
-            <span class="clark-back-to-dealers" tabindex="0">Back to Dealers in
-              <span class="clark-dealer-zipcode">${zipcode}</span>
+        let extend_card = `<div id="clarkToggleBlock_1" class="clark-toggle-block" aria-hidden="">
+          <div class="clark-dealer-info-header">
+            <span class="clark-header-back-content">
+              <i class="fa-solid fa-arrow-left"></i>
+              <span class="clark-back-to-dealers" tabindex="0">Back to Dealers in
+                <span class="clark-dealer-zipcode">${zipcode}</span>
+              </span>
             </span>
-          </span>
-          <h4>${dealer_n}</h4>
-        </div>
-        <div class="clark-dealer-address-details">
-          <div class="clark-dealer-location dealer-details">
-            <i class="fa fa-map-marker"></i>
-            <div class="">${address}, <br>${city}, ${state} ${zipcode}</div>
+            <h4>${dealer_n}</h4>
           </div>
-          <div class="clark-dealer-phone dealer-details">
-            <i class="fa fa-phone"></i>
-            <a href="tel:${phone}" data-dealerno="70022" class="link_phone">${phone}</a>
-          </div>`;
+          <div class="clark-dealer-address-details">
+            <div class="clark-dealer-location dealer-details">
+              <i class="fa fa-map-marker"></i>
+              <div class="">${address}, <br>${city}, ${state} ${zipcode}</div>
+            </div>
+            <div class="clark-dealer-phone dealer-details">
+              <i class="fa fa-phone"></i>
+              <a href="tel:${phone}" data-dealerno="70022" class="link_phone">${phone}</a>
+            </div>`;
 
         if (email.length > 0) {
           extend_card += `<div class="clark-dealer-website dealer-details">
-          <i class="fa fa-envelope"></i>
-            <a target="_blank" data-dealerno="70022" class="link_email" href="mailto:${email}">${email}</a>
-            </div>`;
+              <i class="fa fa-envelope"></i>
+                <a target="_blank" data-dealerno="70022" class="link_email" href="mailto:${email}">${email}</a>
+                </div>`;
         }
-        if (url.length > 0){
-        extend_card += `<div class="clark-dealer-website dealer-details">
-            <i class="fa fa-globe"></i>
-            <a target="_blank" data-dealerno="70022" class="link_email" href="${url}">${url}</a>
-          </div>`;
-      }
+        if (url.length > 0) {
+          extend_card += `<div class="clark-dealer-website dealer-details">
+                <i class="fa fa-globe"></i>
+                <a target="_blank" data-dealerno="70022" class="link_email" href="https://${url}">${url}</a>
+              </div>`;
+        }
         `</div>
-      </div>`;
+            </div>`;
         jQuery(".clark-map-detalis-extend").append(extend_card);
       });
-      // console.log("marker", marker);
-      map.setCenter(center);
+
+      marker.set("id", "map_block_" + i);
+      console.log("marker", marker);
+
+      // Add mouseover event listener to change icon on hover
+      marker.addListener("mouseover", function () {
+        jQuery(document)
+          .find("#map_block_" + i)
+          .css({
+            "background-color": "#f7f7f8", // Set background color to blue
+            "border-left": "0.5rem solid #f7941d", // Set border to 2px solid black
+          });
+
+        // this.setIcon(highlightedIcon);
+      });
+
+      // Add mouseout event listener to change icon back on mouseout
+      marker.addListener("mouseout", function () {
+        jQuery(document)
+          .find("#map_block_" + i)
+          .css({
+            "background-color": "", // Set background color to blue
+            "border-left": "", // Set border to 2px solid black
+          });
+      });
+
+      jQuery(document).on("mouseover", "#map_block_" + i, function () {
+        marker.setIcon({
+          url: 'https://clarkmhcdev.mediawebdev.com/wp-content/uploads/2024/03/map-pin.png',
+          scaledSize: new google.maps.Size(90, 90) // Larger size on hover
+        });
+      });
+      jQuery(document).on("mouseout", "#map_block_" + i, function () {
+        marker.setIcon({
+          url: 'https://clarkmhcdev.mediawebdev.com/wp-content/uploads/2024/03/map-pin.png',
+          scaledSize: new google.maps.Size(40, 40) // Larger size on hover
+        });
+      });
+      // map.setCenter(center);
       // Center map at the given location
       marker.setMap(map);
-      // bounds.extend(marker.position);
+      bounds.extend(marker.position);
       markers.push(marker);
-      // map.fitBounds(bounds);
-      map.setZoom(11);
-    } else {
-      jQuery(".clark-results-not-found").css("display", "block");
-      map = new google.maps.Map(document.getElementById("find-dealer-map"), {
-        center: { lat: 41.850033, lng: -87.6500523 }, // Set the initial center of the map
-        zoom: 4, // Set the initial zoom level
-        mapTypeId: google.maps.MapTypeId.ROADMAP,
-        // disableDefaultUI: true
-      });
+      map.fitBounds(bounds);
+      // map.setZoom(6);
+      jQuery(".clark-map-location-details").append(card);
+      jQuery(".clark-results-not-found").css("display", "none");
+      count++;
     }
   }
 
